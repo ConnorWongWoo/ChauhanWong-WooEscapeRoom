@@ -54,8 +54,8 @@ public class EscapeRoom
       "up", "u", "ju",
       // Down
       "down", "d", "jd",
-      // General jump
-      "jump", "jumpleft", "jumpup", "jumpdown",
+      // jump
+      "jump", "jumpleft", "jumpright", "jumpup", "jumpdown",
       // Other commands
       "pickup", "p", "quit", "q", "replay", "help", "?"};
   
@@ -74,8 +74,18 @@ public class EscapeRoom
         game.movePlayer(px, py);
         score += game.movePlayer(px,py);
       }
-      else if ((input.equals("left") || input.equals("l"))) {
+      else if (input.equals("left") || input.equals("l")) {
         px -= m;
+        game.movePlayer(px, py);
+        score += game.movePlayer(px, py);
+      }
+      else if (input.equals("jr") || input.equals("jumpright")) {
+        px += 2*m;
+        game.movePlayer(px, py);
+        score += game.movePlayer(px, py);
+      }
+      else if (input.equals("jl") || input.equals("jumpleft")) {
+        px -= 2*m;
         game.movePlayer(px, py);
         score += game.movePlayer(px, py);
       }
