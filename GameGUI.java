@@ -139,7 +139,6 @@ public class GameGUI extends JComponent
       
       // increment regardless of whether player really moves
       playerSteps++;
-
       // check if off grid horizontally and vertically
       if ( (newX < 0 || newX > WIDTH-SPACE_SIZE) || (newY < 0 || newY > HEIGHT-SPACE_SIZE) )
       {
@@ -186,6 +185,7 @@ public class GameGUI extends JComponent
       // all is well, move player
       x += incrx;
       y += incry;
+      System.out.println(x+" | "+y);
       repaint();   
       return 0;   
   }
@@ -272,7 +272,9 @@ public class GameGUI extends JComponent
     {
       // DEBUG: System.out.println("prizex:" + p.getX() + " prizey:" + p.getY() + "\npx: " + px + " py:" + py);
       // if location has a prize, pick it up
-      if (p.getWidth() > 0 && p.contains(px, py))
+      double distance = Math.sqrt(Math.pow(p.getX() - px, 2) + Math.pow(p.getY() - py, 2));
+      System.out.println("dist" + distance);
+      if (p.getWidth() > 0 && distance <= 40)
       {
         System.out.println("YOU PICKED UP A PRIZE!");
         p.setSize(0,0);
