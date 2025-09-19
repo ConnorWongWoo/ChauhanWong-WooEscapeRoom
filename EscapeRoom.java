@@ -6,7 +6,6 @@
 * Copyright(c) 2019 PLTW to present. All rights reserved
 */
 import java.util.Scanner;
-
 /**
  * Create an escape room game where the player must navigate
  * to the other side of the screen in the fewest steps, while
@@ -61,10 +60,11 @@ public class EscapeRoom
   
     // set up game
     boolean play = true;
+    int moveCount = 21;
     while (play)
     {
-
-      // get user command and validate
+      game.setMoveCount(moveCount); 
+      game.repaint(); 
       System.out.print("Enter command:");
       String input = UserInput.getValidInput(validCommands);
 
@@ -96,12 +96,16 @@ public class EscapeRoom
       else if (input.equals("p") || input.equals("pickup")) {
         score += game.pickupPrize();
       }
-
       System.out.println("score:"+ score);
       /* uncomment when user quits */
-      // play = false;
+      if (moveCount - 1 == 0) {
+        System.out.println("You ran out of moves.");
+        play = false;
+      }
+      else {
+        moveCount -= 1;
+      }
     }
-
     score += game.endGame();
 
     System.out.println("score=" + score);

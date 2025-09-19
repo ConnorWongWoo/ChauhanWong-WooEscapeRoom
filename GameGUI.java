@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -61,6 +62,7 @@ public class GameGUI extends JComponent
 
   // game frame
   private JFrame frame;
+  private int moveCount = 0;
 
   /**
    * Constructor for the GameGUI class.
@@ -273,7 +275,7 @@ public class GameGUI extends JComponent
       // DEBUG: System.out.println("prizex:" + p.getX() + " prizey:" + p.getY() + "\npx: " + px + " py:" + py);
       // if location has a prize, pick it up
       double distance = Math.sqrt(Math.pow(p.getX() - px, 2) + Math.pow(p.getY() - py, 2));
-      System.out.println("dist" + distance);
+      // System.out.println("dist" + distance);
       if (p.getWidth() > 0 && distance <= 40)
       {
         System.out.println("YOU PICKED UP A PRIZE!");
@@ -330,6 +332,10 @@ public class GameGUI extends JComponent
   public void setWalls(int w) 
   {
     totalWalls = w;
+  }
+  
+  public void setMoveCount(int count) {
+    this.moveCount = count;
   }
 
   /**
@@ -412,6 +418,9 @@ public class GameGUI extends JComponent
     // draw player, saving its location
     g.drawImage(player, x, y, 40,40, null);
     playerLoc.setLocation(x,y);
+    // draw move count
+    g.setColor(Color.BLACK);
+    g.drawString("Movecount: " + moveCount, 200, 300);
   }
 
   /*------------------- private methods -------------------*/
