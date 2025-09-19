@@ -39,8 +39,9 @@ import java.util.Scanner;
                 if(input.equals(str.toLowerCase()))
                     valid = true;
             }
-            if(!valid)
-                System.out.print("Invalid input. Please try again\n>");
+            if(!valid) {
+                System.out.println("You made a move that doesn't exist.");
+      }
         }
         while(!valid);
         return input;

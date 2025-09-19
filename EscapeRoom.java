@@ -37,7 +37,7 @@ public class EscapeRoom
     game.createBoard();
 
     // size of move
-    int m = 5; 
+    int m = 20; 
     // individual player moves
     int px = 0;
     int py = 0; 
@@ -89,6 +89,17 @@ public class EscapeRoom
         game.movePlayer(px, py);
         score += game.movePlayer(px, py);
       }
+      else if (input.equals("up") || input.equals("u")) {
+        py -= m;
+        game.movePlayer(px,py);
+        score += game.movePlayer(px,py);
+      }
+      else if (input.equals("down") || input.equals("d")) {
+        py += m;
+        game.movePlayer(px,py);
+        score += game.movePlayer(px,py);
+      }
+
       System.out.println("score:"+ score);
       /* uncomment when user quits */
       // play = false;
