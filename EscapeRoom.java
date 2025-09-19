@@ -70,34 +70,31 @@ public class EscapeRoom
 
 	    /* process user commands*/
       if (input.equals("right") || input.equals("r")) {
-        px += m;
-        game.movePlayer(px, py);
-        score += game.movePlayer(px,py);
+        score += game.movePlayer(m, 0);
       }
       else if (input.equals("left") || input.equals("l")) {
-        px -= m;
-        game.movePlayer(px, py);
-        score += game.movePlayer(px, py);
+        score += game.movePlayer(-m, 0);
       }
       else if (input.equals("jr") || input.equals("jumpright")) {
-        px += 2*m;
-        game.movePlayer(px, py);
-        score += game.movePlayer(px, py);
+        score += game.movePlayer(2*m, 0);
       }
       else if (input.equals("jl") || input.equals("jumpleft")) {
-        px -= 2*m;
-        game.movePlayer(px, py);
-        score += game.movePlayer(px, py);
+        score += game.movePlayer(-2*m, 0);
       }
       else if (input.equals("up") || input.equals("u")) {
-        py -= m;
-        game.movePlayer(px,py);
-        score += game.movePlayer(px,py);
+        score += game.movePlayer(0, -m);
       }
       else if (input.equals("down") || input.equals("d")) {
-        py += m;
-        game.movePlayer(px,py);
-        score += game.movePlayer(px,py);
+        score += game.movePlayer(0, m);
+      }
+      else if (input.equals("jd") || input.equals("jumpdown")) {
+        score += game.movePlayer(0, 2*m);
+      }
+      else if (input.equals("ju") || input.equals("jumpup")) {
+        score += game.movePlayer(0, -2*m);
+      }
+      else if (input.equals("p") || input.equals("pickup")) {
+        score += game.pickupPrize();
       }
 
       System.out.println("score:"+ score);
