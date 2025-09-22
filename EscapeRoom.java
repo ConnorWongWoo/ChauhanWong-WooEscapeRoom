@@ -36,7 +36,7 @@ public class EscapeRoom
     game.createBoard();
 
     // size of move
-    int m = 20; 
+    int m = 40; 
     // individual player moves
     int px = 0;
     int py = 0; 
@@ -55,8 +55,11 @@ public class EscapeRoom
       "down", "d", "jd",
       // jump
       "jump", "jumpleft", "jumpright", "jumpup", "jumpdown",
-      // Other commands
-      "pickup", "p", "quit", "q", "replay", "help", "?"};
+      // Pickup 
+      "pickup", "p", 
+      // Spring Traps
+      "springtrap","st",
+      "quit", "q", "replay", "help", "?"};
   
     // set up game
     boolean play = true;
@@ -96,8 +99,20 @@ public class EscapeRoom
       else if (input.equals("p") || input.equals("pickup")) {
         score += game.pickupPrize();
       }
+      else if (input.equals("springtrap") || input.equals("st")) {
+        score += game.springTrap(px,py);
+      }
+      else if (input.equals("quit") || input.equals("q")) {
+        game.endGame();
+      }
+      else if (input.equals("replay") || input.equals("r")) {
+        game.replay();
+      }
       System.out.println("score:"+ score);
       /* uncomment when user quits */
+      if (game.isTrap(px, py)) {
+        play = false;
+      }
       if (moveCount - 1 == 0) {
         System.out.println("You ran out of moves.");
         play = false;
