@@ -36,7 +36,7 @@ public class EscapeRoom
     game.createBoard();
 
     // size of move
-    int m = 40; 
+    int m = 30; 
     // individual player moves
     int px = 0;
     int py = 0; 
@@ -108,18 +108,18 @@ public class EscapeRoom
       else if (input.equals("replay") || input.equals("r")) {
         game.replay();
       }
-      System.out.println("score:"+ score);
-      /* uncomment when user quits */
       if (game.isTrap(px, py)) {
-        play = false;
+        score -= game.springTrap(px, py);
       }
       if (moveCount - 1 == 0) {
         System.out.println("You ran out of moves.");
-        play = false;
+        break;
       }
       else {
         moveCount -= 1;
       }
+      System.out.println("score:"+ score);
+
     }
     score += game.endGame();
 

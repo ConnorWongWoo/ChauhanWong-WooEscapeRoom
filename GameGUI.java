@@ -206,6 +206,8 @@ public class GameGUI extends JComponent
   {
     double px = playerLoc.getX() + newx;
     double py = playerLoc.getY() + newy;
+    // double px = newx;
+    // double py = newy;
 
 
     for (Rectangle r: traps)
@@ -214,8 +216,12 @@ public class GameGUI extends JComponent
       // zero size traps have already been sprung, ignore
       if (r.getWidth() > 0)
       {
+        double distance = Math.sqrt(Math.pow(r.getX() - px, 2) + Math.pow(r.getY() - py, 2));
+        // System.out.println("trapx:" + r.getX() + " trapy:" + r.getY() + "\npx: " + px + " py:" + py + "\nDistance:" + distance);
+      // DEBUG: System.out.println("trapx:" + r.getX() + " trapy:" + r.getY() + "\npx: " + px + " py:" + py);
+        if (r.getWidth() > 0 && distance <= 60)
         // if new location of player has a trap, return true
-        if (r.contains(px, py))
+        // if (r.contains(px, py))
         {
           return true;
         }
@@ -239,12 +245,14 @@ public class GameGUI extends JComponent
   {
     double px = playerLoc.getX() + newx;
     double py = playerLoc.getY() + newy;
-
+    // double px = newx;
+    // double py = newy;
     // check all traps, some of which may be already sprung
     for (Rectangle r: traps)
     {
-      // DEBUG: System.out.println("trapx:" + r.getX() + " trapy:" + r.getY() + "\npx: " + px + " py:" + py);
-      if (r.contains(px, py))
+          double distance = Math.sqrt(Math.pow(r.getX() - px, 2) + Math.pow(r.getY() - py, 2));
+      // System.out.println("trapx:" + r.getX() + " trapy:" + r.getY() + "\npx: " + px + " py:" + py + "\nDistance:" + distance);
+      if (r.getWidth() > 0 && distance <= 60)
       {
         // zero size traps indicate it has been sprung, cannot spring again, so ignore
         if (r.getWidth() > 0)
@@ -272,11 +280,12 @@ public class GameGUI extends JComponent
 
     for (Rectangle p: prizes)
     {
-      // DEBUG: System.out.println("prizex:" + p.getX() + " prizey:" + p.getY() + "\npx: " + px + " py:" + py);
-      // if location has a prize, pick it up
       double distance = Math.sqrt(Math.pow(p.getX() - px, 2) + Math.pow(p.getY() - py, 2));
+
+      // System.out.println("prizex:" + p.getX() + " prizey:" + p.getY() + "\npx: " + px + " py:" + py + "\ndistance: " + distance);
+      // if location has a prize, pick it up
       // System.out.println("dist" + distance);
-      if (p.getWidth() > 0 && distance <= 40)
+      if (p.getWidth() > 0 && distance <= 60)
       {
         System.out.println("YOU PICKED UP A PRIZE!");
         p.setSize(0,0);
