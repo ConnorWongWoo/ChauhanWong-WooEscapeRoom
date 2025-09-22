@@ -108,6 +108,11 @@ public class EscapeRoom
       else if (input.equals("replay") || input.equals("r")) {
         game.replay();
       }
+      else if (input.equals("help") || input.equals("?")) {
+        for (String i: validCommands) {
+          System.out.print(i + "| ");
+        }
+      }
       if (game.isTrap(px, py)) {
         score -= game.springTrap(px, py);
       }
