@@ -63,6 +63,7 @@ public class GameGUI extends JComponent
   // game frame
   private JFrame frame;
   private int moveCount = 0;
+  private int score = 0;
 
   /**
    * Constructor for the GameGUI class.
@@ -187,7 +188,6 @@ public class GameGUI extends JComponent
       // all is well, move player
       x += incrx;
       y += incry;
-      System.out.println(x+" | "+y);
       repaint();   
       return 0;   
   }
@@ -262,6 +262,7 @@ public class GameGUI extends JComponent
           return trapVal;
         }
       }
+
     }
     // no trap here, penalty
     System.out.println("THERE IS NO TRAP HERE TO SPRING");
@@ -346,6 +347,10 @@ public class GameGUI extends JComponent
   public void setMoveCount(int count) {
     this.moveCount = count;
   }
+  
+  public void setScore(int score) {
+    this.score = score;
+  }
 
   /**
    * Reset the board to replay existing game. The method can be called at any time but results in a penalty if called
@@ -427,8 +432,9 @@ public class GameGUI extends JComponent
     // draw player, saving its location
     g.drawImage(player, x, y, 40,40, null);
     playerLoc.setLocation(x,y);
-    // draw move count
+    // draw score and move count
     g.setColor(Color.BLACK);
+    g.drawString("Score: " + score, 200, 280);
     g.drawString("Movecount: " + moveCount, 200, 300);
   }
 

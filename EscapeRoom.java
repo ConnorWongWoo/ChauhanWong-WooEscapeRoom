@@ -109,6 +109,7 @@ public class EscapeRoom
         game.replay();
       }
       else if (input.equals("help") || input.equals("?")) {
+        System.out.println("Commands: \n");
         for (String i: validCommands) {
           System.out.print(i + "| ");
         }
@@ -123,7 +124,7 @@ public class EscapeRoom
       else {
         moveCount -= 1;
       }
-      System.out.println("score:"+ score);
+      game.setScore(score);
 
     }
     score += game.endGame();
